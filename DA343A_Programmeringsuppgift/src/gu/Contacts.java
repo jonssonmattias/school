@@ -1,0 +1,226 @@
+package gu;
+import java.io.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
+
+
+/**
+ * Is used to create a contacts
+ * 
+ * @author Markus Masalkovski, Mattias Jönsson, Ramy Behnam, Lukas Rosberg, Sofie Ljungcrantz
+ *
+ */
+public class Contacts extends JPanel implements ActionListener{
+	private static final long serialVersionUID = 1L;
+	private JPanel panelNorth = new JPanel();
+	private JPanel panelCenter = new JPanel();
+	private JPanel panelSouth = new JPanel();
+
+	private JLabel activeUsers = new JLabel("Active users");
+	private JLabel yourContacts = new JLabel("Your contacts");
+
+	private JButton addContact = new JButton("Add contact");
+	private JButton removeContact = new JButton("Remove Contact");
+	private JButton send = new JButton("Send to selected contacts");
+
+	private DefaultListModel<String> activeUserListModel;
+	private DefaultListModel<String> contactListModel;
+	private JList<String> userList;
+	private JList<String> contactList;
+
+	private ArrayList<User> activeUserArrayList = new ArrayList<User>();
+	private ArrayList<User> contactsArrayList;
+
+	private ClientUI clientUI;
+
+	/**
+	 * Constructs a Contacts-object
+	 * 
+	 * @param clientUI the clientUI
+	 */
+	public Contacts(ClientUI clientUI) {
+		this();
+		this.clientUI=clientUI;
+	}
+
+	/**
+	 * Constructs a Contacts-object
+	 */
+	public Contacts() {
+		activeUserListModel = new DefaultListModel<String>();
+		contactListModel = new DefaultListModel<String>();
+		userList = new JList<String>(activeUserListModel);
+		contactList = new JList<String>(contactListModel);
+
+		userList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		contactList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+		setLayout();
+		setComponetSize();
+		add(panelNorth, BorderLayout.NORTH);
+		add(panelCenter, BorderLayout.CENTER);
+		add(panelSouth, BorderLayout.SOUTH);
+		panelNorth.add(activeUsers, BorderLayout.NORTH);
+		panelCenter.add(yourContacts, BorderLayout.NORTH);
+		panelCenter.add(new JScrollPane(contactList), BorderLayout.CENTER);
+		panelSouth.add(addContact, BorderLayout.WEST);
+		panelSouth.add(send, BorderLayout.CENTER);
+		panelSouth.add(removeContact, BorderLayout.EAST);	
+		panelNorth.add(new JScrollPane(userList), BorderLayout.CENTER);
+		send.addActionListener(this);
+		addContact.addActionListener(this);	
+	}
+
+	/**
+	 * Creates the frame
+	 */
+	public void createFrame() {
+		JFrame frame = new JFrame("Your contacts - " + clientUI.getClient().getUser().getUsername());
+		frame.setPreferredSize(new Dimension(500,600));
+		frame.setBounds(900,0,500,600);
+		frame.setVisible(true);
+		frame.pack();
+		frame.getContentPane().add(this);
+	}
+
+	private void setLayout() {
+		setLayout(new BorderLayout());
+		panelNorth.setLayout(new BorderLayout());
+		panelCenter.setLayout(new BorderLayout());
+		panelSouth.setLayout(new BorderLayout());
+
+	}
+
+	private void setComponetSize() {
+		contactList.setPreferredSize(new Dimension(70,100));
+		userList.setPreferredSize(new Dimension(70,100));
+		addContact.setPreferredSize(new Dimension(100,20));
+		removeContact.setPreferredSize(new Dimension(120,20));
+	}
+	/**
+	 * Displays the active users
+	 * 
+	 * @param arrayList the active users
+	 */
+	public void displayUsers(ArrayList<User> users) {
+		for(User u : users)
+			activeUserArrayList.add(u);
+		removeDuplicates(activeUserArrayList);
+		activeUserListModel.removeAllElements();
+		for(User u: activeUserArrayList) {
+			activeUserListModel.addElement(u.getUsername());
+		}
+	}
+
+	private void test(ArrayList<String> alist) {
+		activeUserArrayList = new ArrayList<>();
+		for(String u : alist) {
+			activeUserArrayList.add(new User(u,null));
+		}
+		removeDuplicates(activeUserArrayList);
+		for(User u : activeUserArrayList) {
+			activeUserListModel.addElement(u.getUsername());
+		}
+	}
+
+	private void removeDuplicates(ArrayList<User> alist) {
+		for(int i=0;i<alist.size();i++) {
+			int multi=0;
+			for(int j=0;j<alist.size();j++) {
+				if(alist.get(i).getUsername().equals(alist.get(j).getUsername())) {
+					if(multi>0)
+						alist.remove(j);
+					else
+						multi++;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Sets the contacts
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public void setContacts() throws FileNotFoundException, IOException {
+		contactsArrayList=selectedItem(activeUserArrayList, userList);
+		try {
+			for(User u: contactsArrayList) {
+				String userName = u.getUsername();
+				if(!contactListModel.contains(userName) && !u.getUsername().equals(clientUI.getClient().getUser().getUsername()))
+					contactListModel.addElement(userName);
+			}
+		}catch(ConcurrentModificationException e) {
+			e.printStackTrace();
+		};
+	}
+
+
+	private ArrayList<User> selectedItem(ArrayList<User> al, JList<String> list) {
+		int[] selectedIx = list.getSelectedIndices();
+		ArrayList<User> selectedUsers = new ArrayList<>();
+		for (int i = 0; i < selectedIx.length; i++) {
+			Object sel = list.getModel().getElementAt(selectedIx[i]);
+			for(User u:al) {
+				if(sel.equals(u.getUsername()))
+					selectedUsers.add((User) u);
+			}
+		}
+		userList.removeSelectionInterval(0,userList.getMaxSelectionIndex());
+		return selectedUsers;
+	}
+
+	public static void main(String[] args) {
+		Contacts contacts = new Contacts();
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("123");
+		list.add("fff");
+		list.add("1524");
+		list.add("1524");
+		contacts.test(list);
+		contacts.createFrame();
+	}
+
+	private void writeContactsToFile(String filename) throws FileNotFoundException, IOException {
+		try(ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("files/"+filename+".dat")))) {
+			oos.writeInt(contactsArrayList.size());
+			for(User u:contactsArrayList) {
+				oos.writeObject(u);
+				oos.flush();
+			}
+			System.out.println("Contacts have been saved");
+		}
+	}
+	private void readContactsToFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
+		try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("files/"+filename+".dat")))) {
+			ois.readInt();
+			for(User u:contactsArrayList) {
+				ois.readObject();
+
+			}
+			System.out.println("Contacts have been saved");
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==send) {
+			clientUI.setReciverList(selectedItem(activeUserArrayList, userList));
+			clientUI.setReciverList(selectedItem(contactsArrayList, contactList));
+		}
+		if(e.getSource()==addContact) {
+			try {
+				setContacts();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+}
+
+
+
