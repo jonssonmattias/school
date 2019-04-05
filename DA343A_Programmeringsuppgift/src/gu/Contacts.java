@@ -1,11 +1,14 @@
 package gu;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
 
 /**
  * Is used to create a contacts
@@ -32,9 +35,11 @@ public class Contacts extends JPanel implements ActionListener{
 	private JList<String> contactList;
 
 	private ArrayList<User> activeUserArrayList = new ArrayList<User>();
-	private ArrayList<User> contactsArrayList;
+	private ArrayList<User> contactsArrayList = new ArrayList<User>();
 
 	private ClientUI clientUI;
+
+	private String username;
 
 	/**
 	 * Constructs a Contacts-object
@@ -71,7 +76,7 @@ public class Contacts extends JPanel implements ActionListener{
 		panelSouth.add(removeContact, BorderLayout.EAST);	
 		panelNorth.add(new JScrollPane(userList), BorderLayout.CENTER);
 		send.addActionListener(this);
-		addContact.addActionListener(this);	
+		addContact.addActionListener(this);
 	}
 
 	/**
@@ -106,6 +111,7 @@ public class Contacts extends JPanel implements ActionListener{
 	 * @param arrayList the active users
 	 */
 	public void displayUsers(ArrayList<User> users) {
+		activeUserArrayList.clear();
 		for(User u : users)
 			activeUserArrayList.add(u);
 		removeDuplicates(activeUserArrayList);
@@ -146,8 +152,11 @@ public class Contacts extends JPanel implements ActionListener{
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public void setContacts() throws FileNotFoundException, IOException {
-		contactsArrayList=selectedItem(activeUserArrayList, userList);
+	public void setContacts(ArrayList<User> al) throws FileNotFoundException, IOException {
+		for(User u : al) {
+			contactsArrayList.add(u);
+		}
+		removeDuplicates(contactsArrayList);
 		try {
 			for(User u: contactsArrayList) {
 				String userName = u.getUsername();
@@ -158,7 +167,7 @@ public class Contacts extends JPanel implements ActionListener{
 			e.printStackTrace();
 		};
 	}
-
+	
 
 	private ArrayList<User> selectedItem(ArrayList<User> al, JList<String> list) {
 		int[] selectedIx = list.getSelectedIndices();
@@ -170,7 +179,7 @@ public class Contacts extends JPanel implements ActionListener{
 					selectedUsers.add((User) u);
 			}
 		}
-		userList.removeSelectionInterval(0,userList.getMaxSelectionIndex());
+		list.removeSelectionInterval(0,list.getMaxSelectionIndex());
 		return selectedUsers;
 	}
 
@@ -195,15 +204,17 @@ public class Contacts extends JPanel implements ActionListener{
 			System.out.println("Contacts have been saved");
 		}
 	}
-	private void readContactsToFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
+	private ArrayList<User> readContactsFromFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
+		ArrayList<User> al = new ArrayList<User>();
 		try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("files/"+filename+".dat")))) {
-			ois.readInt();
-			for(User u:contactsArrayList) {
-				ois.readObject();
-
+			int n = ois.readInt();
+			for(int i=0;i<n;i++) {
+				al.add((User)ois.readObject());
+//				System.out.println(((User)ois.readObject()).getUsername());
 			}
-			System.out.println("Contacts have been saved");
+			System.out.println("Contacts have been read");
 		}
+		return al;
 	}
 
 	@Override
@@ -214,10 +225,29 @@ public class Contacts extends JPanel implements ActionListener{
 		}
 		if(e.getSource()==addContact) {
 			try {
-				setContacts();
+				setContacts(selectedItem(activeUserArrayList, userList));
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+		}
+	}
+
+	public void clearContactList() {
+		contactsArrayList.clear();
+		contactListModel.clear();
+	}
+
+	public void writeContacts() throws FileNotFoundException, IOException {
+		writeContactsToFile("contacts_"+clientUI.getClient().getUser().getUsername());
+	}
+	public void readContacts() throws FileNotFoundException, ClassNotFoundException, IOException {
+		String filename = "contacts_"+clientUI.getClient().getUser().getUsername();
+		File file = new File("files/"+filename+".dat");
+		if(file.exists()){
+			setContacts(readContactsFromFile(filename));
+		}
+		else {
+			file.createNewFile();
 		}
 	}
 }

@@ -238,6 +238,12 @@ public class ClientUI extends JPanel implements ActionListener{
 			textPaneMessage.insertIcon(img);
 		}
 		if(e.getSource()==btnDisconnect) {
+			try {
+				contacts.writeContacts();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			contacts.clearContactList();
 			client.logout();
 			connected(false);
 		}

@@ -49,8 +49,11 @@ public class Client  {
 	 * Starts the client
 	 * 
 	 * @return
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
+	 * @throws FileNotFoundException 
 	 */
-	public boolean start() {
+	public boolean start(){
 		try {
 			socket = new Socket(server, port);
 		} 
@@ -134,8 +137,16 @@ public class Client  {
 						clientUI.append((Message)obj);
 					}
 					else if(obj instanceof String) {
-						clientUI.append((String)obj);
-						if(((String)obj).contains("is taken")) clientUI.connected(false);
+						if(((String)obj).equals("Clear users")) users.clear();
+						else {
+							clientUI.append((String)obj);						
+							if(((String)obj).contains("is taken")) clientUI.connected(false);
+							if(((String)obj).contains("You connected to the server")) {
+								clientUI.getContacts().readContacts();
+							}
+							
+						}
+						
 					}
 				}
 				catch(IOException e) {

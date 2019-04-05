@@ -433,6 +433,7 @@ public class Server {
 	private synchronized void broadcastUserList() throws IOException {
 		for(int i=0;i<al.size();i++) {
 			ClientThread ct = al.get(i);
+			ct.sendTextMessage("Clear users");
 			ct.sendUserList(users);
 		}
 	}
@@ -599,8 +600,9 @@ public class Server {
 		}
 
 		private synchronized void sendUserList(ArrayList<User> list) throws IOException {
-			for(User u : list) {
-				sOutput.writeObject(u);
+			for(int i=0;i<list.size();i++) {
+				System.out.println(user.getUsername()+" - "+list.get(i).getUsername());
+				sOutput.writeObject(list.get(i));
 			}
 		}
 
@@ -652,7 +654,6 @@ public class Server {
 					return true;
 			return false;
 		}
-
 	}
 }
 
