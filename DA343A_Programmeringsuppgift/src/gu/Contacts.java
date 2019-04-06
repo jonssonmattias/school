@@ -210,7 +210,6 @@ public class Contacts extends JPanel implements ActionListener{
 			int n = ois.readInt();
 			for(int i=0;i<n;i++) {
 				al.add((User)ois.readObject());
-//				System.out.println(((User)ois.readObject()).getUsername());
 			}
 			System.out.println("Contacts have been read");
 		}
