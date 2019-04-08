@@ -207,13 +207,7 @@ public class ClientUI extends JPanel implements ActionListener{
 				connected(true);
 			}
 			else {
-				tfUsername.setText("Mattias");
-				profileImage=new ImageIcon("images/gubbe.jpg");
-				image.insertIcon(profileImage);
-				user = new User("Mattias",profileImage);
-				client = new Client(ipAdress, port, user, this);
-				if(!client.start()) return;
-				connected(true);
+				JOptionPane.showMessageDialog(null, "Please fill in your name and chose a picture");
 			}
 		}
 		if(e.getSource()==btnSend) {
