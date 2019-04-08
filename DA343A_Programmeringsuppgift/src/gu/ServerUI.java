@@ -9,7 +9,7 @@ import java.text.ParseException;
 /**
  * Is used to create a UI for the server
  * 
- * @author Markus Masalkovski, Mattias JÃ¶nsson, Ramy Behnam, Lukas Rosberg, SofieLjungcrantz
+ * @author Markus Masalkovski, Mattias Jönsson, Ramy Behnam, Lukas Rosberg, Sofie Ljungcrantz
  *
  */
 public class ServerUI extends JFrame implements ActionListener, WindowListener {
