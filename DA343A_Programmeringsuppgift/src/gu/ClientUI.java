@@ -29,20 +29,20 @@ public class ClientUI extends JPanel implements ActionListener{
 	private JPanel panelNorthSouth = new JPanel();
 	private JPanel panelCenter = new JPanel();
 	private JPanel panelSouth = new JPanel();
-	
+
 	private JButton btnChoose = new JButton("Choose");
 	private JButton btnConnect = new JButton("Connect to server");
 	private JButton btnSend = new JButton("Send");
 	private JButton btnImage = new JButton("+");
 	private JButton btnDisconnect = new JButton("Disconnect");
 	private JButton btnContacts = new JButton("Contact list");
-	
+
 	private JTextPane image = new JTextPane();
 
 	private JTextField tfUsername = new JTextField();
 	private JList<Object> textPaneViewer;
 	private JTextPane textPaneMessage = new JTextPane();
-	
+
 	private DefaultListModel<Object> messageListModel;
 
 	private JLabel lblName = new JLabel("Username: ", SwingConstants.RIGHT);
@@ -81,7 +81,7 @@ public class ClientUI extends JPanel implements ActionListener{
 		panelSouth.add(textPaneMessage, BorderLayout.CENTER);
 		panelSouth.add(btnImage,BorderLayout.WEST);
 		panelSouth.add(btnContacts, BorderLayout.SOUTH);
-		
+
 		image.setEnabled(false);
 	}
 
@@ -128,7 +128,7 @@ public class ClientUI extends JPanel implements ActionListener{
 		else {
 			messageListModel.addElement(obj);
 		}
-			
+
 	}
 	public void connected(boolean connected) {
 		this.connected = connected;
@@ -140,6 +140,10 @@ public class ClientUI extends JPanel implements ActionListener{
 		btnContacts.setEnabled(connected);
 		textPaneMessage.setEnabled(connected);
 		tfUsername.setEnabled(!connected);
+		if(messageListModel!=null && !connected) {
+			messageListModel.removeAllElements();
+			textPaneViewer.setModel(messageListModel);
+		}
 	}
 	/**
 	 * Sets the receiver list
@@ -182,7 +186,7 @@ public class ClientUI extends JPanel implements ActionListener{
 	public static Contacts getContacts() {
 		return contacts;
 	}
-	
+
 	/**
 	 * @return the Client-object
 	 */
