@@ -8,7 +8,7 @@ public class Writer extends Thread {
 	public Writer(String txt, boolean sync) {
 		this.txt=txt;
 		this.sync=sync;
-		buffer = new CharacterBuffer(sync);
+		buffer = new CharacterBuffer();
 	}
 
 	public void run() {
@@ -23,6 +23,6 @@ public class Writer extends Thread {
 	}
 
 	private void write(char c, boolean sync) {
-		buffer.put(c);
+		buffer.set(c, sync);
 	}
 }

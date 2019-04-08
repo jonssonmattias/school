@@ -6,7 +6,7 @@ public class Reader extends Thread {
 	
 	public Reader(boolean sync) {
 		this.sync=sync;
-		buffer = new CharacterBuffer(sync);
+		buffer = new CharacterBuffer();
 	}
 	
 	public void run() {
@@ -27,6 +27,6 @@ public class Reader extends Thread {
 //		if(sync) return buffer.syncGet();
 //		else return buffer.nonSyncGet();
 		
-		return buffer.get();
+		return buffer.get(sync);
 	}
 }

@@ -1,17 +1,14 @@
 package assignment2;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.concurrent.locks.*;
 
 public class CharacterBuffer {
-	private LinkedList<Character> buffer = new LinkedList<Character>();
-	private boolean HasCharacter = false, sync;
 	private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 	private final Lock readLock = readWriteLock.readLock();
 	private final Lock writeLock = readWriteLock.writeLock();
+	private final ArrayList<Character> list = new ArrayList<>();
+	private boolean hasCharacter = false;
 	
 	public void set(char c, boolean sync){
 		if(sync) {
@@ -28,32 +25,39 @@ public class CharacterBuffer {
 		}
 	}
 
-	public char get(int i, boolean sync){
+	public char get(boolean sync){
 		if(sync) {
 			readLock.lock();
 			try{
-				return get(i);
+				return get();
 			}
 			finally{
 				readLock.unlock();
 			}
 		}
 		else {
-			return get(i);
+			return get();
 		}
 	}
 
-	private char get(int i) {
-		char c = buffer.get(i);
+	private char get() {
+		char c = list.get(0);
 		System.out.println("Printing elements("+c+") by thread "+ Thread.currentThread().getName());
+		hasCharacter=false;
 		return c;
 	}
 
-	public void set(char c) {
-		buffer.add(c);
-		System.out.println("Adding element \"" + c + "\" by thread " + Thread.currentThread().getName());
+	private void set(char c) {
+		if(!hasCharacter) {
+			list.add(c);
+			System.out.println("Adding element \"" + c + "\" by thread " + Thread.currentThread().getName());
+			hasCharacter=true;
+		}
 	}
-	
+
+	public int size() {
+		return list.size();
+	}
 //	public CharacterBuffer(boolean sync) {
 //	this.sync=sync;
 //}

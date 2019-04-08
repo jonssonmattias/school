@@ -18,26 +18,23 @@ public class GUI{
 	private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 	private final Lock readLock = readWriteLock.readLock();
 	private final Lock writeLock = readWriteLock.writeLock();
-
+	
+	
 	/**
 	 * Launch the application.
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); 
-		String text = in.readLine();
-		for(char c : text.toCharArray())
-			System.out.println(c);
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					GUI window = new GUI();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI window = new GUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -184,29 +181,12 @@ public class GUI{
 
 	public void write(String txt, boolean sync) {
 		writer=new Writer(txt, sync);
-//		writeLock.lock();
-//		try{
-//			writer.start();
-//			
-//		}
-//		finally{
-//			writeLock.unlock();
-//		}
 		writer.start();
 		for(char c : txt.toCharArray())
 			writerListModel.addElement("Writting "+c);
 	}
 	public void read(boolean sync) throws InterruptedException {
 		reader=new Reader(sync);
-//		readLock.lock();
-//		try {
-//			String txt=reader.display(sync);
-//			readerListModel.addElement(txt);
-//			reader.start();
-//		}
-//		finally{
-//			readLock.unlock();
-//		}
 		reader.start();
 	}
 	private class DisabledItemSelectionModel extends DefaultListSelectionModel {
