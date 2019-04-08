@@ -319,7 +319,7 @@ import javax.swing.*;
 /**
  * Is used to the create a server
  * 
- * @author Markus Masalkovski, Mattias JÃ¶nsson, Ramy Behnam, Lukas Rosberg, SofieLjungcrantz
+ * @author Markus Masalkovski, Mattias Jönsson, Ramy Behnam, Lukas Rosberg, Sofie Ljungcrantz
  *
  */
 public class Server {
