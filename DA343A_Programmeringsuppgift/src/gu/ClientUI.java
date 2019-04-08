@@ -224,7 +224,6 @@ public class ClientUI extends JPanel implements ActionListener{
 				textPaneMessage.repaint();
 				lblTo.setText("Send to:");
 				for(int i=0;i<reciverList.size();i++) {
-					System.out.println(reciverList.get(i));
 					reciverList.remove(i);
 				}
 				img=null;

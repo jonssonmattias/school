@@ -565,7 +565,6 @@ public class Server {
 				if(message!=null) {
 					switch(message.getType()) {
 					case Message.MESSAGE:
-						System.out.println(message.getText());
 						try {
 							broadcast(message);
 						} catch (InterruptedException e) {
@@ -601,7 +600,6 @@ public class Server {
 
 		private synchronized void sendUserList(ArrayList<User> list) throws IOException {
 			for(int i=0;i<list.size();i++) {
-				System.out.println(user.getUsername()+" - "+list.get(i).getUsername());
 				sOutput.writeObject(list.get(i));
 			}
 		}

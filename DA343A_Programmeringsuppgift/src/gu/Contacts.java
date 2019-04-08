@@ -201,7 +201,6 @@ public class Contacts extends JPanel implements ActionListener{
 				oos.writeObject(u);
 				oos.flush();
 			}
-			System.out.println("Contacts have been saved");
 		}
 	}
 	private ArrayList<User> readContactsFromFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -211,7 +210,6 @@ public class Contacts extends JPanel implements ActionListener{
 			for(int i=0;i<n;i++) {
 				al.add((User)ois.readObject());
 			}
-			System.out.println("Contacts have been read");
 		}
 		return al;
 	}
