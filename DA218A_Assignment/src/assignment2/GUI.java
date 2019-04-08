@@ -3,6 +3,9 @@ package assignment2;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.concurrent.locks.*;
 
 public class GUI{
@@ -18,18 +21,23 @@ public class GUI{
 
 	/**
 	 * Launch the application.
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI window = new GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); 
+		String text = in.readLine();
+		for(char c : text.toCharArray())
+			System.out.println(c);
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					GUI window = new GUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
 	}
 
 	/**

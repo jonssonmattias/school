@@ -53,12 +53,6 @@ public class CharacterBuffer {
 		buffer.add(c);
 		System.out.println("Adding element \"" + c + "\" by thread " + Thread.currentThread().getName());
 	}
-	public static void main(String[] args) throws IOException {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); 
-		String text = in.readLine();
-		for(char c : text.toCharArray())
-			System.out.println(c);
-	}
 	
 //	public CharacterBuffer(boolean sync) {
 //	this.sync=sync;
