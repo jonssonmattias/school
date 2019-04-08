@@ -1,29 +1,28 @@
 package assignment2;
 
-public class Writer extends Thread{
-	private CharacterBuffer buffer = new CharacterBuffer();
+public class Writer extends Thread {
+	private CharacterBuffer buffer;
 	private String txt;
 	private boolean sync;
-	
+
 	public Writer(String txt, boolean sync) {
 		this.txt=txt;
 		this.sync=sync;
+		buffer = new CharacterBuffer(sync);
 	}
-	
+
 	public void run() {
-//		while(!Thread.interrupted()) {
-			text(txt,sync);
-//		}
-	}
-	
-	public void text(String txt, boolean sync) {
 		for(int i=0;i<txt.length();i++) {
 			write(txt.charAt(i),sync);
+			try {
+				sleep(300);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	
+
 	private void write(char c, boolean sync) {
-		if(sync)buffer.syncPut(c);
-		else buffer.nonSyncPut(c);
+		buffer.put(c);
 	}
 }

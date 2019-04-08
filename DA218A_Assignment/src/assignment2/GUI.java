@@ -123,16 +123,7 @@ public class GUI{
 					read(sync);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				}
-//				
-//				if(rdbtnSync.isSelected()) {
-//					putInWriterList(txt);
-//					writer.text(txt, true);
-//				}
-//				else {
-//					writer.text(txt, false);
-//				}
-//				
+				}				
 			}
 		});
 		btnRun.setBounds(29, 172, 106, 25);
@@ -185,28 +176,30 @@ public class GUI{
 
 	public void write(String txt, boolean sync) {
 		writer=new Writer(txt, sync);
-		writeLock.lock();
-		try{
-			writer.start();
-			
-		}
-		finally{
-			writeLock.unlock();
-		}
+//		writeLock.lock();
+//		try{
+//			writer.start();
+//			
+//		}
+//		finally{
+//			writeLock.unlock();
+//		}
+		writer.start();
 		for(char c : txt.toCharArray())
 			writerListModel.addElement("Writting "+c);
 	}
 	public void read(boolean sync) throws InterruptedException {
 		reader=new Reader(sync);
-		readLock.lock();
-		try {
+//		readLock.lock();
+//		try {
 //			String txt=reader.display(sync);
 //			readerListModel.addElement(txt);
-			reader.start();
-		}
-		finally{
-			readLock.unlock();
-		}
+//			reader.start();
+//		}
+//		finally{
+//			readLock.unlock();
+//		}
+		reader.start();
 	}
 	private class DisabledItemSelectionModel extends DefaultListSelectionModel {
 		private static final long serialVersionUID = 1L;

@@ -1,11 +1,12 @@
 package assignment2;
 
 public class Reader extends Thread {
-	private CharacterBuffer buffer = new CharacterBuffer();
+	private CharacterBuffer buffer;
 	private boolean sync;
 	
 	public Reader(boolean sync) {
 		this.sync=sync;
+		buffer = new CharacterBuffer(sync);
 	}
 	
 	public void run() {
@@ -23,7 +24,9 @@ public class Reader extends Thread {
 	}
 	
 	public char read(boolean sync) throws InterruptedException {
-		if(sync) return buffer.syncGet();
-		else return buffer.nonSyncGet();
+//		if(sync) return buffer.syncGet();
+//		else return buffer.nonSyncGet();
+		
+		return buffer.get();
 	}
 }
