@@ -141,12 +141,8 @@ public class Client  {
 						else {
 							clientUI.append((String)obj);						
 							if(((String)obj).contains("is taken")) clientUI.connected(false);
-							if(((String)obj).contains("You connected to the server")) {
-								clientUI.getContacts().readContacts();
-							}
-							
+							if(((String)obj).contains("You connected to the server")) clientUI.getContacts().readContacts();
 						}
-						
 					}
 				}
 				catch(IOException e) {
