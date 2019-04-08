@@ -1,32 +1,28 @@
 package assignment2;
 
+import java.util.Random;
+
 public class Reader extends Thread {
 	private CharacterBuffer buffer;
 	private boolean sync;
-	
-	public Reader(boolean sync) {
+	private GUI gui;
+
+	public Reader(boolean sync,CharacterBuffer buffer, GUI gui) {
 		this.sync=sync;
-		buffer = new CharacterBuffer();
+		this.buffer=buffer;
+		this.gui=gui;
 	}
-	
+
 	public void run() {
-//		while(!Thread.interrupted()) {
+		while(!Thread.interrupted()) {
 			try {
-				System.out.println(display(sync));
+				char c = buffer.get(sync);
+				if(c!=0)
+					gui.displayReader(c);
+				sleep(new Random().nextInt(1000));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-//		}
-	}
-	
-	public String display(boolean sync) throws InterruptedException{
-		return "Reading "+read(sync);
-	}
-	
-	public char read(boolean sync) throws InterruptedException {
-//		if(sync) return buffer.syncGet();
-//		else return buffer.nonSyncGet();
-		
-		return buffer.get(sync);
+		}
 	}
 }
