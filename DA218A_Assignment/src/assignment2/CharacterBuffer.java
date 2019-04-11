@@ -3,10 +3,23 @@ package assignment2;
 import java.util.*;
 import java.util.concurrent.locks.*;
 
+/**
+ * A buffer containing a character
+ * 
+ * @author Mattias Jönsson
+ *
+ */
 public class CharacterBuffer {
 	private final LinkedList<Character> list = new LinkedList<>();
 	private boolean hasCharacter = false;
 
+	/**
+	 * Sets the character to the buffer
+	 * 
+	 * @param c the character
+	 * @param sync if the set should be synchronized or not
+	 * @throws InterruptedException
+	 */
 	public void set(char c, boolean sync) throws InterruptedException{
 		if(sync) {
 			synchronized(this){
@@ -21,6 +34,13 @@ public class CharacterBuffer {
 		}
 	}
 
+	/**
+	 * Gets the character from the buffer
+	 * 
+	 * @param sync if the set should be synchronized or not
+	 * @return the character
+	 * @throws InterruptedException
+	 */
 	public char get(boolean sync) throws InterruptedException{
 		if(sync) {
 			synchronized(this){
@@ -40,12 +60,22 @@ public class CharacterBuffer {
 		}
 	}
 
+	/**
+	 * Gets the first character from the buffer 
+	 * 
+	 * @return the character
+	 */
 	private char get() {
 		char c = list.removeFirst();
 		hasCharacter=false;
 		return c;
 	}
 
+	/**
+	 * Sets a character to the buffer
+	 * 
+	 * @param c the character
+	 */
 	private void set(char c) {
 		if(!hasCharacter) {
 			list.addLast(c);
@@ -53,43 +83,12 @@ public class CharacterBuffer {
 		}
 	}
 
+	/**
+	 * Returns the number of elements in this list.
+	 * 
+	 * @return the number of elements in this list
+	 */
 	public int size() {
 		return list.size();
 	}
-	//	public CharacterBuffer(boolean sync) {
-	//	this.sync=sync;
-	//}
-	//public char get() throws InterruptedException {
-	//	char c;
-	//	if(sync) {
-	//		synchronized(this) {
-	//			c = buffer.remove();
-	//			HasCharacter = false;
-	//		}
-	//	}
-	//	else {
-	//		c = buffer.remove();
-	//		HasCharacter = false;
-	//	}
-	//	return c;
-	//}
-	//
-	//public void put(char c) {
-	//	System.out.println(c);
-	//	if(sync) {
-	//		synchronized(this) {
-	//			if(!HasCharacter) {
-	//				buffer.add(c);
-	//				
-	//				HasCharacter = true;
-	//			}
-	//		}
-	//	}
-	//	else {
-	//		if(!HasCharacter) {
-	//			buffer.add(c);
-	//			HasCharacter = true;
-	//		}
-	//	}
-	//}
 }

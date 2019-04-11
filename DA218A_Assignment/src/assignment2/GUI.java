@@ -8,6 +8,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.locks.*;
 
+/**
+ * The GUI to the assignment
+ * 
+ * Date: 2019-04-11
+ * @author Mattias Jönsson
+ *
+ */
 public class GUI{
 	private JFrame frame;
 	private JTextField tfTransfer;
@@ -62,6 +69,9 @@ public class GUI{
 		setReader();
 	}
 
+	/**
+	 * Sets the writer panel
+	 */
 	public void setWriter() {
 		JPanel pnlWrite = new JPanel();
 		frame.getContentPane().add(pnlWrite);
@@ -88,6 +98,9 @@ public class GUI{
 		pnlWrite.add(lblTransmission);
 	}
 
+	/**
+	 * Sets the tester panel
+	 */
 	public void setTester() {
 		JPanel pnlTester = new JPanel();
 		frame.getContentPane().add(pnlTester);
@@ -168,6 +181,9 @@ public class GUI{
 		pnlTester.add(btnClear);
 	}
 
+	/**
+	 * Sets the reader panel
+	 */
 	public void setReader() {
 		JPanel pnlReader = new JPanel();
 		frame.getContentPane().add(pnlReader);
@@ -194,29 +210,59 @@ public class GUI{
 		pnlReader.add(lblReceipt);
 	}
 
+	/**
+	 * Starts the writer thread
+	 * 
+	 * @param txt the string to be written
+	 * @param sync if it should be synchronized or not  
+	 */
 	public void write(String txt, boolean sync) {
 		if(writer==null)
 			writer=new Writer(txt, sync,buffer, this);
 		writer.start();
 	}
+	/**
+	 * Starts the reader thread
+	 * 
+	 * @param sync if it should be synchronized or not 
+	 * @throws InterruptedException
+	 */
 	public void read(boolean sync) throws InterruptedException {
 		if(reader==null)
 			reader=new Reader(sync, buffer, this);
 		reader.start();
 	}
+	/**
+	 * Displays the read character
+	 * 
+	 * @param c the character read
+	 */
 	public void displayReader(char c) {
 		received+=c;
 		lblReceipt.setText(received);
 		readerListModel.addElement("Reading: "+c);
 	}
+	/**
+	 * Displays the written character
+	 * 
+	 * @param c the character to be written
+	 */
 	public void displayWriter(char c) {
 		transmitted+=c;
 		lblTransmission.setText(transmitted);
 		writerListModel.addElement("Writting: "+c);
 	}
+	/**
+	 * Sets the color of the status panel
+	 * 
+	 * @param c the color
+	 */
 	public void setStatusColor(Color c) {
 		pnlStatus.setBackground(c);
 	}
+	/**
+	 * Check if the transmitted string is equal to the recievied string
+	 */
 	public void match() {
 		if(transmitted.equals(received)) lblMatch.setText("Match");
 		else lblMatch.setText("No match");
