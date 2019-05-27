@@ -21,82 +21,50 @@ public class BoundedBuffer {
 		init();
 	}
 
-	private void init() {
-		aLock.lock();
-		try {
-			for(int i=0;i<max;i++)
-				status[i]=BufferStatus.Empty;
-			condVar.signalAll();
-		}finally {
-			aLock.unlock();
-		}
+	private synchronized void init() {
+		for(int i=0;i<max;i++)
+			status[i]=BufferStatus.Empty;
+		notifyAll();
 	}
 
-	public void add( String elem ) throws InterruptedException {	
-		aLock.lock();
-		try {
-			if(size == max) {
-				condVar.await();
-			}
-			if(status[writePos]!=BufferStatus.Empty) {
-				condVar.await();
-			}
-			elements[writePos] = elem;		
-			status[writePos] = BufferStatus.New;
-			writePos = (writePos+1) % max;
-			size++;
-			condVar.signalAll();
-		}finally {
-			aLock.unlock();
+	public synchronized void add( String elem ) throws InterruptedException {	
+		while(status[writePos]!=BufferStatus.Empty) {
+			wait();
 		}
+		elements[writePos] = elem;		
+		status[writePos] = BufferStatus.New;
+		writePos = (writePos+1) % max;
+		notifyAll();
 	}
 
-	public String remove() throws InterruptedException {
-		aLock.lock();
-		try {
-			if(size == 0) {
-				condVar.await();
-			}
-			if(status[readPos]!=BufferStatus.Checked){
-				condVar.await();
-			}
-			String elem = elements[readPos];
-			status[readPos]=BufferStatus.Empty;
-			readPos = (readPos+1) % max;
-			size--;
-			condVar.signalAll();
-			return elem;
-		}finally {
-			aLock.unlock();
+	public synchronized String remove() throws InterruptedException {
+		while(status[readPos]!=BufferStatus.Checked){
+			wait();
 		}
+		String elem = elements[readPos];
+		status[readPos]=BufferStatus.Empty;
+		readPos = (readPos+1) % max;
+		notifyAll();
+		return elem;
 	}
 
-	public void modifyData(boolean notify) throws InterruptedException {
-		aLock.lock();
-		try {
-			boolean replace = true;
-			if(size == max) {
-				condVar.await();
-			}
-			if(status[findPos]!=BufferStatus.New) {
-				condVar.await();
-			}
-			if(elements[findPos]!=null) {
-				String elem = elements[findPos];
-				if(notify) {
-					replace=question(elem);
-				}		
-				if(elem.contains(findString)&&replace) {
-					elem=elem.replace(findString, replaceString);
-				}
-				elements[findPos]=elem;
-				status[findPos]=BufferStatus.Checked;
-				findPos=(findPos+1) % max;
-				condVar.signalAll();
-			}
-		}finally {
-			aLock.unlock();
+	public synchronized void modifyData(boolean notify) throws InterruptedException {
+		boolean replace = true;
+		while(status[findPos]!=BufferStatus.New) {
+			wait();
 		}
+		String elem = elements[findPos];
+		if(notify) {
+			replace=question(elem);
+		}		
+		if(elem.contains(findString)) {
+			elem=elem.replace(findString, replaceString);
+		}
+		elements[findPos]=elem;
+		status[findPos]=BufferStatus.Checked;
+		findPos=(findPos+1) % max;
+		System.out.println("MODIFY - "+elem);
+		notifyAll();
 	}
 	public boolean question(String elem) {
 		int dialogResult  = JOptionPane.showConfirmDialog(null, "Do you want to replace "+elem+" with "+replaceString+"?","Question",JOptionPane.YES_NO_OPTION);
