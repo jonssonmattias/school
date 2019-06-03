@@ -1,16 +1,12 @@
 package assignment4;
 
-import java.util.concurrent.locks.*;
-
 import javax.swing.JOptionPane;
 
 public class BoundedBuffer {
 	private String[] elements;
 	private BufferStatus[] status;
-	private int max, size=0, writePos=0, readPos=0, findPos=0;
+	private int max, writePos=0, readPos=0, findPos=0;
 	private String findString, replaceString;
-	private Lock aLock = new ReentrantLock();
-	private Condition condVar = aLock.newCondition();
 
 	public BoundedBuffer(int max, String findString, String replaceString) {
 		this.max=max;
@@ -57,13 +53,12 @@ public class BoundedBuffer {
 		if(notify) {
 			replace=question(elem);
 		}		
-		if(elem.contains(findString)) {
+		if(elem.contains(findString) || replace) {
 			elem=elem.replace(findString, replaceString);
 		}
 		elements[findPos]=elem;
 		status[findPos]=BufferStatus.Checked;
 		findPos=(findPos+1) % max;
-		System.out.println("MODIFY - "+elem);
 		notifyAll();
 	}
 	public boolean question(String elem) {
