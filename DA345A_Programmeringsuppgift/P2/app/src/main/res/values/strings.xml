@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">P2</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="chat">Chat</string>
+    <string name="welcome">Welcome</string>
+    <string name="joinOrCreate">Join/Create group</string>
+    <string name="username">Username:</string>
+    <string name="groupname">Group name:</string>
+    <string name="send">Send</string>
+    <string name="attach">attach</string>
+    <string name="changeGroup">Change group</string>
+    <string name="close">Close</string>
+</resources>

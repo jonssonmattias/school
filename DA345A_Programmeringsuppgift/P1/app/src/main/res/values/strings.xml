@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">P1</string>
+    <string name="login">Login</string>
+    <string name="loginName">Please enter your name</string>
+    <string name="income">Income</string>
+    <string name="expenses">Expenses</string>
+    <string name="welcome">Welcome</string>
+    <string name="name">Name: </string>
+    <string name="amount">Amount: </string>
+    <string name="category">Category: </string>
+    <string name="date">Date: </string>
+    <string name="addIncome">Add income</string>
+    <string name="addExpense">Add expense</string>
+    <string name="expenseHeader">Add your expenses</string>
+    <string name="incomeHeader">Add your income</string>
+    <string name="dateFrom">Date from:</string>
+    <string name="dateTo">Date to:</string>
+    <string name="viewBudget">View budget</string>
+    <string name="all">All</string>
+    <string name="table">Table</string>
+    <string name="chart">Chart</string>
+    <string name="camera">Open camera</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+</resources>

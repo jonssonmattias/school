@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">P2</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="login">Logga in</string>
+    <string name="logout">Logga ut</string>
+    <string name="chat">Chat</string>
+    <string name="welcome">Välkommen</string>
+    <string name="joinOrCreate">Gå med i/Skapa gropp</string>
+    <string name="username">Användarnamn:</string>
+    <string name="groupname">Gruppnamn:</string>
+    <string name="send">Skicka</string>
+    <string name="attach">Bifoga</string>
+    <string name="changeGroup">Byt grupp</string>
+    <string name="close">Stäng</string>
+</resources>
