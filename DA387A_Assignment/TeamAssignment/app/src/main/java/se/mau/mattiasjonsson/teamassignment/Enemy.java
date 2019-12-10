@@ -6,7 +6,12 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 
-public class Obsticle extends Drawable {
+public class Enemy extends Drawable {
+    private String name;
+
+    public Enemy(String name){
+        this.name = name;
+    }
 
     @Override
     public void draw(Canvas canvas) {
@@ -14,22 +19,16 @@ public class Obsticle extends Drawable {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.RED);
         canvas.drawPaint(paint);
-        paint.setColor(Color.BLUE);
-        canvas.drawRect(50,100, 25, 100, paint);
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
-    public void setAlpha(int alpha) {
-
-    }
-
+    public void setAlpha(int alpha) { }
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-
-    }
-
+    public void setColorFilter(ColorFilter colorFilter) { }
     @Override
-    public int getOpacity() {
-        return 0;
-    }
+    public int getOpacity() {return 0; }
 }
