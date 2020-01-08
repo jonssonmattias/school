@@ -23,6 +23,10 @@ public class Ball extends Drawable {
         }
     }
 
+    public int getSize(){
+        return size;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         this.canvas=canvas;
