@@ -35,7 +35,8 @@ public class Ball extends View {
 
     public void init(AttributeSet attrs){
         mPaintCircle = new Paint();
-        mPaintCircle.setColor(Color.parseColor("#00ccff"));
+        mPaintCircle.setStyle(Paint.Style.FILL);
+        mPaintCircle.setColor(Color.BLACK);
     }
 
     @Override
@@ -55,55 +56,7 @@ public class Ball extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        mPaintCircle.setStyle(Paint.Style.FILL);
-        mPaintCircle.setColor(Color.BLACK);
         canvas.drawPaint(mPaintCircle);
         canvas.drawRect(size, size, size, size, mPaintCircle);
     }
 }
-/*
-public class Ball extends Drawable {
-    private int size, color;
-    private Canvas canvas;
-
-    public Ball(int size, int color){
-        this.size=size;
-        this.color=color;
-    }
-
-    public void jump(){
-        if(canvas!=null) {
-            size = size * 2;
-            draw(canvas);
-            size = size / 2;
-        }
-    }
-
-    public int getSize(){
-        return size;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        this.canvas=canvas;
-        float rectSize = (float)size;
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(color);
-        canvas.drawPaint(paint);
-        paint.setColor(color);
-        canvas.drawRect(rectSize, rectSize, rectSize, rectSize, paint);
-    }
-
-    @Override
-    public void setAlpha(int alpha) { }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) { }
-
-    @Override
-    public int getOpacity() {return 0; }
-}
-
- */

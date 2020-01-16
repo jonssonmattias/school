@@ -7,11 +7,4 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-
-    <se.mau.mattiasjonsson.teamassignment.views.Ball
-        android:id="@+id/ball"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        ></se.mau.mattiasjonsson.teamassignment.views.Ball>
-
 </android.support.constraint.ConstraintLayout>
