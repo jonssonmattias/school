@@ -163,7 +163,7 @@ public class GameActivity extends AppCompatActivity {
 
     private boolean isOutOfBounds() {
         float ballX = ball.getX();
-        return (ballX < 0 || ballX > (xMax + 100 - ball.getSize()));
+        return (ballX < 0 || ballX > (xMax - ball.getSize()));
     }
 
     private boolean intersects(Ball ball, Enemy enemy) {
@@ -212,7 +212,7 @@ public class GameActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        tvScore.setText("SCORE: " + score);
+                        tvScore.setText("SCORE: " + ++score);
                     }
                 });
             }
