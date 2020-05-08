@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="sv">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inlämingsuppgift 1</title>
+        <link href="stylesheet/main.css" rel="stylesheet" type="text/css">
+        <link id="stylesheet" href="stylesheet/TouchOfGold.css" rel="stylesheet" type="text/css">
+        <script src="script.js"></script>
+        <script type="text/javascript">
+            function loadSite() {
+                start();
+                loadStyleSheet();
+            }
+        </script>
+    </head>
+    <body onload="loadSite()">
+        <header><h1>Inlämingsuppgift 1</h1></header>
+        <p class="nav-button-mobile" onclick="toggleMenu()">Menu</p>
+        <nav>
+            <ul>
+                <li><a href=".">Start</a></li>
+                <li><a href="movies.html">Filmer</a></li>
+                <li><a href="slideshow.html">Bildspel</a></li>
+                <li>
+                    <select id="styleSelect" onchange="changeStyle()">
+                        <option value="TouchOfGold">Touch of Gold</option>
+                        <option value="DiBlae">Di Blåe</option>
+                        <option value="Darkweb">Darkweb</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+        <article>
+            <h2>Bildspel</h2>
+            <div class="slideshow-container">
+                <div class="slideshowImg fade box" style="display: block">
+                    <img src="img/HarryPotter1.jpg" style="width:100%">
+                </div>
+                <div class="slideshowImg fade box">
+                    <img src="img/HarryPotter2.jpg" style="width:100%">
+                </div>
+                <div class="slideshowImg fade box">
+                    <img src="img/HarryPotter3.jpg" style="width:100%">
+                </div>
+                <div class="slideshowImg fade box">
+                    <img src="img/HarryPotter4.jpg" style="width:100%">
+                </div>
+                <div class="slideshowImg fade box">
+                    <img src="img/HarryPotter5.jpg" style="width:100%">
+                </div>
+                <div class="slideshowImg fade box">
+                    <img src="img/HarryPotter6.jpg" style="width:100%">
+                </div>
+                <div class="slideshowImg fade box">
+                    <img src="img/HarryPotter7.jpg" style="width:100%">
+                </div>
+                <div class="slideshowImg fade box">
+                    <img src="img/HarryPotter8.jpg" style="width:100%">
+                </div>
+            </div>
+        </article>
+        <footer>
+            <p>Mattias Jönsson (AI9852)</p>
+        </footer>
+    </body>
+</html>

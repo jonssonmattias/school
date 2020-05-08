@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="sv">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inlämingsuppgift 1</title>
+        <link href="stylesheet/main.css" rel="stylesheet" type="text/css">
+        <link id="stylesheet" href="stylesheet/TouchOfGold.css" rel="stylesheet" type="text/css">
+        <script src="script.js"></script>
+    </head>
+    <body onload="loadStyleSheet()">
+        <header><h1>Inlämingsuppgift 1</h1></header>
+        <p class="nav-button-mobile" onclick="toggleMenu()">Menu</p>
+        <nav>
+            <ul>
+                <li><a href=".">Start</a></li>
+                <li><a href="movies.html">Filmer</a></li>
+                <li><a href="slideshow.html">Bildspel</a></li>
+                <li>
+                    <select id="styleSelect" onchange="changeStyle()">
+                        <option value="TouchOfGold">Touch of Gold</option>
+                        <option value="DiBlae">Di Blåe</option>
+                        <option value="Darkweb">Darkweb</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+        <article style="min-height: 80%;">
+            <h2>Välkommen till min webbplats!</h2>
+            <div class="box smallbox">
+                <div class="leftside">
+                    <h3>Vem är skaparen av denna sidan?</h3>
+                    <p>Mitt namn är Mattias Jönsson. Jag är 20 år gammal och studerar på Malmö Universitet.</p>
+                </div>
+                <img src="img/IMG_011.jpg" alt="Mattias Jönsson" width="100%">
+            </div>
+            <div class="box smallbox">
+                <h3>Varför gör jag denna hemsida?</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit nisl tortor, eu porta eros vulputate eget. Curabitur lacinia dignissim pellentesque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse efficitur pretium ullamcorper. Pellentesque et orci nec nisl auctor tincidunt. Praesent magna eros, semper sit amet pretium ut, semper vitae massa. Vivamus bibendum sollicitudin elit a efficitur. Sed laoreet eleifend tortor at commodo. Proin lacinia, felis eu tempus dictum, augue tortor laoreet sem, nec congue turpis augue id magna.</p>
+            </div>
+            <div class="box bigbox">
+                <h3>Tre saker som varit utmanande med denna inlömningsuppgift?</h3>
+                <ol>
+                    <li>Sak1</li>
+                    <li>Sak2</li>
+                    <li>Sak3</li>
+                </ol>
+            </div>
+        </article>
+        <footer>
+            <p>Mattias Jönsson (AI9852)</p>
+        </footer>
+    </body>
+</html>

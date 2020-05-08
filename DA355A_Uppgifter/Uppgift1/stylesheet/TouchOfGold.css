@@ -1,0 +1,26 @@
+body {
+    background-color: #F0F0F0;
+}
+
+header {
+    background-color: gold;
+    -webkit-text-stroke: 2px black;
+    color: #FFF;
+}
+
+nav, .nav-button-mobile {
+    background-color: #8F8F8F;
+}
+
+article {
+    background-color: #fff;
+}
+
+footer, select {
+    background-color: gold;
+    color: #000;
+}
+
+a {
+    color: #FFF;
+}

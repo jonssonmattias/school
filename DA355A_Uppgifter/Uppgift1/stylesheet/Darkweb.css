@@ -1,0 +1,20 @@
+body {
+    background-color: #000;
+}
+
+header, footer, select {
+    background-color: #202020;
+    color: #FFF;
+}
+
+nav, .nav-button-mobile {
+    background-color: #8F8F8F;
+}
+
+article {
+    background-color: darkgrey;
+}
+
+a {
+    color: #000;
+}
