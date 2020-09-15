@@ -46,21 +46,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adress.cs" />
-    <Compile Include="Commercial.cs" />
-    <Compile Include="Countries.cs" />
-    <Compile Include="Estate.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\Apartment.cs" />
+    <Compile Include="Entities\Commercial.cs" />
+    <Compile Include="Entities\CommercialBuilding.cs" />
+    <Compile Include="Entities\Estate.cs" />
+    <Compile Include="Entities\House.cs" />
+    <Compile Include="Entities\LegalForm.cs" />
+    <Compile Include="Entities\Ownership.cs" />
+    <Compile Include="Entities\Rental.cs" />
+    <Compile Include="Entities\Residential.cs" />
+    <Compile Include="Entities\ResidentialBuilding.cs" />
+    <Compile Include="Entities\Shop.cs" />
+    <Compile Include="Entities\Tenement.cs" />
+    <Compile Include="Entities\TownHouse.cs" />
+    <Compile Include="Entities\Villa.cs" />
+    <Compile Include="Entities\Warehouse.cs" />
+    <Compile Include="Enums\Categories.cs" />
+    <Compile Include="Enums\ComTypes.cs" />
+    <Compile Include="Enums\Countries.cs" />
+    <Compile Include="Enums\LegalForms.cs" />
+    <Compile Include="Enums\ResTypes.cs" />
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IEstate.cs" />
+    <Compile Include="Interfaces\IEstate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Residential.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

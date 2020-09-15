@@ -1,0 +1,18 @@
+﻿using Assignment1;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Drawing;
+
+namespace DA259E_Assignment1.Assignment1.Entities
+{
+    class Apartment : ResidentialBuilding
+    {
+        public Apartment(int id, Categories category, string type, LegalForms legalForm, Address address, Image image, string imagename)
+            : base(id, category, type, legalForm, address, image, imagename)
+        { }
+
+        public int Floor { get; set; }
+    }
+}

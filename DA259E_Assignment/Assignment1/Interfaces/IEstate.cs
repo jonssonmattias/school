@@ -3,7 +3,8 @@
     internal interface IEstate
     {
         int ID { get; set; }
-        Adress Adress{ get;}
+        Address Address { get; set; }
         string[] Print();
+        string ToSearchableString();
     }
 }

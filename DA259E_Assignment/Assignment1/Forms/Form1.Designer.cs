@@ -30,6 +30,9 @@
         {
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.gbxCreate = new System.Windows.Forms.GroupBox();
+            this.lblChosenImage = new System.Windows.Forms.Label();
+            this.btnImage = new System.Windows.Forms.Button();
+            this.lblImage = new System.Windows.Forms.Label();
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.tbxCity = new System.Windows.Forms.TextBox();
             this.tbxZipCode = new System.Windows.Forms.TextBox();
@@ -52,6 +55,9 @@
             this.lblSearch = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.gbxEdit = new System.Windows.Forms.GroupBox();
+            this.lblChosenImageEdit = new System.Windows.Forms.Label();
+            this.btnImageEdit = new System.Windows.Forms.Button();
+            this.lblImageEdit = new System.Windows.Forms.Label();
             this.cbCountryEdit = new System.Windows.Forms.ComboBox();
             this.tbxCityEdit = new System.Windows.Forms.TextBox();
             this.tbxZipCodeEdit = new System.Windows.Forms.TextBox();
@@ -67,9 +73,6 @@
             this.lblTypeEdit = new System.Windows.Forms.Label();
             this.lblCategoryEdit = new System.Windows.Forms.Label();
             this.cbCategoryEdit = new System.Windows.Forms.ComboBox();
-            this.lblImage = new System.Windows.Forms.Label();
-            this.btnImage = new System.Windows.Forms.Button();
-            this.lblChosenImage = new System.Windows.Forms.Label();
             this.gbxCreate.SuspendLayout();
             this.gbInfo.SuspendLayout();
             this.gbxEdit.SuspendLayout();
@@ -83,7 +86,7 @@
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(181, 24);
             this.cbCategory.TabIndex = 0;
-            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.cbCategory_SelectedIndexChanged);
+            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.Category_SelectedIndexChanged);
             // 
             // gbxCreate
             // 
@@ -107,10 +110,37 @@
             this.gbxCreate.Controls.Add(this.cbCategory);
             this.gbxCreate.Location = new System.Drawing.Point(12, 12);
             this.gbxCreate.Name = "gbxCreate";
-            this.gbxCreate.Size = new System.Drawing.Size(292, 332);
+            this.gbxCreate.Size = new System.Drawing.Size(292, 312);
             this.gbxCreate.TabIndex = 1;
             this.gbxCreate.TabStop = false;
             this.gbxCreate.Text = "Create Estate";
+            // 
+            // lblChosenImage
+            // 
+            this.lblChosenImage.Location = new System.Drawing.Point(105, 251);
+            this.lblChosenImage.Name = "lblChosenImage";
+            this.lblChosenImage.Size = new System.Drawing.Size(181, 17);
+            this.lblChosenImage.TabIndex = 19;
+            this.lblChosenImage.Text = "Image";
+            // 
+            // btnImage
+            // 
+            this.btnImage.Location = new System.Drawing.Point(105, 225);
+            this.btnImage.Name = "btnImage";
+            this.btnImage.Size = new System.Drawing.Size(181, 23);
+            this.btnImage.TabIndex = 18;
+            this.btnImage.Text = "Choose Image";
+            this.btnImage.UseVisualStyleBackColor = true;
+            this.btnImage.Click += new System.EventHandler(this.Image_Click);
+            // 
+            // lblImage
+            // 
+            this.lblImage.AutoSize = true;
+            this.lblImage.Location = new System.Drawing.Point(6, 228);
+            this.lblImage.Name = "lblImage";
+            this.lblImage.Size = new System.Drawing.Size(46, 17);
+            this.lblImage.TabIndex = 17;
+            this.lblImage.Text = "Image";
             // 
             // cbCountry
             // 
@@ -180,7 +210,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(136, 303);
+            this.btnCreate.Location = new System.Drawing.Point(136, 271);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(121, 23);
             this.btnCreate.TabIndex = 6;
@@ -276,6 +306,7 @@
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // tbxSearch
             // 
@@ -305,6 +336,9 @@
             // 
             // gbxEdit
             // 
+            this.gbxEdit.Controls.Add(this.lblChosenImageEdit);
+            this.gbxEdit.Controls.Add(this.btnImageEdit);
+            this.gbxEdit.Controls.Add(this.lblImageEdit);
             this.gbxEdit.Controls.Add(this.cbCountryEdit);
             this.gbxEdit.Controls.Add(this.tbxCityEdit);
             this.gbxEdit.Controls.Add(this.tbxZipCodeEdit);
@@ -321,12 +355,39 @@
             this.gbxEdit.Controls.Add(this.lblCategoryEdit);
             this.gbxEdit.Controls.Add(this.cbCategoryEdit);
             this.gbxEdit.Enabled = false;
-            this.gbxEdit.Location = new System.Drawing.Point(12, 350);
+            this.gbxEdit.Location = new System.Drawing.Point(12, 330);
             this.gbxEdit.Name = "gbxEdit";
-            this.gbxEdit.Size = new System.Drawing.Size(292, 260);
+            this.gbxEdit.Size = new System.Drawing.Size(292, 302);
             this.gbxEdit.TabIndex = 17;
             this.gbxEdit.TabStop = false;
             this.gbxEdit.Text = "Edit Estate";
+            // 
+            // lblChosenImageEdit
+            // 
+            this.lblChosenImageEdit.Location = new System.Drawing.Point(105, 251);
+            this.lblChosenImageEdit.Name = "lblChosenImageEdit";
+            this.lblChosenImageEdit.Size = new System.Drawing.Size(181, 17);
+            this.lblChosenImageEdit.TabIndex = 22;
+            this.lblChosenImageEdit.Text = "Image";
+            // 
+            // btnImageEdit
+            // 
+            this.btnImageEdit.Location = new System.Drawing.Point(105, 225);
+            this.btnImageEdit.Name = "btnImageEdit";
+            this.btnImageEdit.Size = new System.Drawing.Size(181, 23);
+            this.btnImageEdit.TabIndex = 21;
+            this.btnImageEdit.Text = "Choose Image";
+            this.btnImageEdit.UseVisualStyleBackColor = true;
+            this.btnImageEdit.Click += new System.EventHandler(this.Image_Click);
+            // 
+            // lblImageEdit
+            // 
+            this.lblImageEdit.AutoSize = true;
+            this.lblImageEdit.Location = new System.Drawing.Point(6, 228);
+            this.lblImageEdit.Name = "lblImageEdit";
+            this.lblImageEdit.Size = new System.Drawing.Size(46, 17);
+            this.lblImageEdit.TabIndex = 20;
+            this.lblImageEdit.Text = "Image";
             // 
             // cbCountryEdit
             // 
@@ -396,7 +457,7 @@
             // 
             // btnConfirmEdit
             // 
-            this.btnConfirmEdit.Location = new System.Drawing.Point(136, 225);
+            this.btnConfirmEdit.Location = new System.Drawing.Point(136, 271);
             this.btnConfirmEdit.Name = "btnConfirmEdit";
             this.btnConfirmEdit.Size = new System.Drawing.Size(121, 23);
             this.btnConfirmEdit.TabIndex = 6;
@@ -457,40 +518,13 @@
             this.cbCategoryEdit.Name = "cbCategoryEdit";
             this.cbCategoryEdit.Size = new System.Drawing.Size(181, 24);
             this.cbCategoryEdit.TabIndex = 0;
-            this.cbCategoryEdit.SelectedIndexChanged += new System.EventHandler(this.cbCategoryEdit_SelectedIndexChanged);
-            // 
-            // lblImage
-            // 
-            this.lblImage.AutoSize = true;
-            this.lblImage.Location = new System.Drawing.Point(9, 233);
-            this.lblImage.Name = "lblImage";
-            this.lblImage.Size = new System.Drawing.Size(46, 17);
-            this.lblImage.TabIndex = 17;
-            this.lblImage.Text = "Image";
-            // 
-            // btnImage
-            // 
-            this.btnImage.Location = new System.Drawing.Point(105, 233);
-            this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(181, 23);
-            this.btnImage.TabIndex = 18;
-            this.btnImage.Text = "Choose Image";
-            this.btnImage.UseVisualStyleBackColor = true;
-            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
-            // 
-            // lblChosenImage
-            // 
-            this.lblChosenImage.Location = new System.Drawing.Point(105, 263);
-            this.lblChosenImage.Name = "lblChosenImage";
-            this.lblChosenImage.Size = new System.Drawing.Size(181, 17);
-            this.lblChosenImage.TabIndex = 19;
-            this.lblChosenImage.Text = "Image";
+            this.cbCategoryEdit.SelectedIndexChanged += new System.EventHandler(this.Category_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 622);
+            this.ClientSize = new System.Drawing.Size(1114, 647);
             this.Controls.Add(this.gbxEdit);
             this.Controls.Add(this.gbInfo);
             this.Controls.Add(this.gbxCreate);
@@ -550,6 +584,9 @@
         private System.Windows.Forms.Button btnImage;
         private System.Windows.Forms.Label lblImage;
         private System.Windows.Forms.Label lblChosenImage;
+        private System.Windows.Forms.Label lblChosenImageEdit;
+        private System.Windows.Forms.Button btnImageEdit;
+        private System.Windows.Forms.Label lblImageEdit;
     }
 }
 
