@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="resourses/postgresql-42.0.0.jar" sourcepath="C:/Users/TheComputer/.m2/repository/org/zenframework/z8/dependencies/commons/postgresql-42.0.0/2.0/postgresql-42.0.0-2.0-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
