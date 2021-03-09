@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assignment1
 {
-    class Address
+    public class Address
     {
         public Address(string street, string zipcode, string city, Countries country)
         {

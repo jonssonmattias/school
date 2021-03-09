@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Assignment1.Controller" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAgAAAACAAAAAAAAACAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Address" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAIAAQAAAAA=</HashCode>
+      <FileName>Entities\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Estate" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAgAAAAAIAAQAAAAAAABACAQAAAAAECAA=</HashCode>
+      <FileName>Entities\Estate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Assignment1.Form1" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgiIgLDIDKABECEwAIGeBFBaRAgBEwBowQAQMoAcBwc=</HashCode>
+      <FileName>Forms\Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Program" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.Apartment" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Apartment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.CommercialBuilding" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Entities\CommercialBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.House" Collapsed="true">
+    <Position X="8.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\House.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.LegalForm" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\LegalForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.Ownership" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Ownership.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.Rental" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Rental.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.ResidentialBuilding" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Entities\ResidentialBuilding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.Shop" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Shop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.Tenement" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Tenement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.TownHouse" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TownHouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.Warehouse" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Warehouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DA259E_Assignment1.Assignment1.Entities.Villa" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Villa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Properties.Resources" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Properties.Settings" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Assignment1.IEstate" Collapsed="true">
+    <Position X="12" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAQAAAAAAAAACAAAAAAAEAAA=</HashCode>
+      <FileName>Interfaces\IEstate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Categories" Collapsed="true">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Enums\Categories.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ComTypes" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Enums\ComTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Countries" Collapsed="true">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iv9xbfbzI1rWmtgC3YUk9lZ6Chh6NfxGM3O0rBUA1b0=</HashCode>
+      <FileName>Enums\Countries.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LegalForms" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQACAAA=</HashCode>
+      <FileName>Enums\LegalForms.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ResTypes" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAQAAAAAA=</HashCode>
+      <FileName>Enums\ResTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

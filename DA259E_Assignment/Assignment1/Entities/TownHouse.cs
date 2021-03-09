@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DA259E_Assignment1.Assignment1.Entities
 {
-    class TownHouse : House
+    public class TownHouse : House
     {
         public TownHouse(int id, Categories category, string type, LegalForms legalForm, Address address, Image image, string imagename)
             : base(id, category, type, legalForm, address, image, imagename)

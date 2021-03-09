@@ -7,9 +7,8 @@ using System.Text;
 
 namespace DA259E_Assignment1.Assignment1.Entities
 {
-    abstract class CommercialBuilding : Estate
+    public abstract class CommercialBuilding : Estate
     {
-
         public CommercialBuilding(int id, Categories category, string type, LegalForms legalForm, Address address, Image image, string imagename)
             : base(id, category, type, legalForm, address, image, imagename)
         { }

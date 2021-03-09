@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Assignment1
 {
-    abstract class Estate : IEstate
+    public abstract class Estate : IEstate
     {
         protected Estate(int id, Categories category, string type, LegalForms legalForm, Address address, Image image, string imagename)
         {

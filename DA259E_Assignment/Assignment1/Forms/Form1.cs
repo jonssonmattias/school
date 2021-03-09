@@ -1,28 +1,17 @@
-﻿using DA259E_Assignment1.Assignment1.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Assignment1
 {
     public partial class Form1 : Form
     {
-        /*
-        private string[] categories = { "Residential", "Commercial" };
-        private string[] typeRes = { "Houses", "Villas", "Apartments", "Townhouses" };
-        private string[] typeCom = { "Shops", "Warehouse" };
-        private string[] legalForms = { "Ownership", "Tenement", "Rental" };
-        */
         private List<Estate> estates = new List<Estate>();
         private int id = 0, currEditEstateID;
         private ImageList imgs = new ImageList();
+        private Controller controller;
 
         public Form1()
         {
@@ -30,19 +19,19 @@ namespace Assignment1
             SetListViewColumns();
             PopulateCombobox(false, -1);
             imgs.ImageSize = new Size(100, 100);
+            controller = new Controller();
 
-
-            // TEST DATA
-            string imgName = "";
+        // TEST DATA        
+            string imgName = "..\\..\\Images\\IMG_001.jpg";
             Image img = Image.FromFile(imgName);
 
-            estates.Add(CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 0), LegalForms.Rental, "Rådmansgatan 1A", "21146", "Malmö", Countries.Sweden, img, imgName));
-            estates.Add(CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 2), LegalForms.Ownership, "Palmstreet 50C", "789345", "Kabul", Countries.Afghanistan, img, imgName));
-            estates.Add(CreateEstate(id++, Categories.Commercial, Enum.GetName(typeof(ComTypes), 0), LegalForms.Rental, "Torggatan 14", "52231", "Tidaholm", Countries.Sweden, img, ""));
-            estates.Add(CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 3), LegalForms.Ownership, "22 Park Lane", "123456", "London", Countries.United_Kingdom, img, imgName));
-            estates.Add(CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 0), LegalForms.Rental, "Södra Förstadsgatan 33", "24614", "Malmö", Countries.Sweden, img, imgName));
-            estates.Add(CreateEstate(id++, Categories.Commercial, Enum.GetName(typeof(ComTypes), 0), LegalForms.Rental, "Avenyn 99", "51000", "Göteborg", Countries.Sweden, img, imgName));
-            estates.Add(CreateEstate(id++, Categories.Commercial, Enum.GetName(typeof(ComTypes), 1), LegalForms.Rental, "Knivgatan 10", "21412", "Malmö", Countries.Sweden, img, imgName));
+            estates.Add(controller.CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 0), LegalForms.Rental, "Rådmansgatan 1A", "21146", "Malmö", Countries.Sweden, img, imgName));
+            estates.Add(controller.CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 2), LegalForms.Ownership, "Palmstreet 50C", "789345", "Kabul", Countries.Afghanistan, img, imgName));
+            estates.Add(controller.CreateEstate(id++, Categories.Commercial, Enum.GetName(typeof(ComTypes), 0), LegalForms.Rental, "Torggatan 14", "52231", "Tidaholm", Countries.Sweden, img, ""));
+            estates.Add(controller.CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 3), LegalForms.Ownership, "22 Park Lane", "123456", "London", Countries.United_Kingdom, img, imgName));
+            estates.Add(controller.CreateEstate(id++, Categories.Residential, Enum.GetName(typeof(ResTypes), 0), LegalForms.Rental, "Södra Förstadsgatan 33", "24614", "Malmö", Countries.Sweden, img, imgName));
+            estates.Add(controller.CreateEstate(id++, Categories.Commercial, Enum.GetName(typeof(ComTypes), 0), LegalForms.Rental, "Avenyn 99", "51000", "Göteborg", Countries.Sweden, img, imgName));
+            estates.Add(controller.CreateEstate(id++, Categories.Commercial, Enum.GetName(typeof(ComTypes), 1), LegalForms.Rental, "Knivgatan 10", "21412", "Malmö", Countries.Sweden, img, imgName));
             UpdateListView();
             // END TEST
 
@@ -162,96 +151,7 @@ namespace Assignment1
         {
             int count = imgs.Images.Count;
             for (int i = count-1; i >= 0; i--) imgs.Images.RemoveAt(i);
-        }
-
-        private string ChooseImage()
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            if (dlg.ShowDialog() != DialogResult.OK)
-                return null;
-            return dlg.FileName;
-        }
-
-        private Estate GetEstate(int id)
-        {
-            int i = 0;
-            foreach(Estate estate in estates)
-            {
-                if (estate.ID == id) return estates[i];
-                i++;
-            }
-            return null;
-        }
-
-        private Estate CreateEstate(int id, Categories category, string type, LegalForms legalForm, string street, string zipcode, string city, Countries country, Image image, string imagename)
-        {
-            switch (category)
-            {
-                case Categories.Commercial:
-                    switch (type)
-                    {
-                        case "Shop":
-                            return new Shop(id, category, type, legalForm, new Address(street, zipcode, city, country), image, imagename);
-                        case "Warehouse":
-                            return new Warehouse(id, category, type, legalForm, new Address(street, zipcode, city, country), image, imagename);
-                        default:
-                            return null;
-                    }
-                case Categories.Residential:
-                    switch (type)
-                    {
-                        case "Apartment":
-                            return new Apartment(id, category, type, legalForm, new Address(street, zipcode, city, country), image, imagename);
-                        case "House":
-                            return new House(id, category, type, legalForm, new Address(street, zipcode, city, country), image, imagename);
-                        case "Villa":
-                            return new Villa(id, category, type, legalForm, new Address(street, zipcode, city, country), image, imagename);
-                        case "TownHouse":
-                            return new TownHouse(id, category, type, legalForm, new Address(street, zipcode, city, country), image, imagename);
-                        default:
-                            return null;
-                    }
-                default:
-                    return null;
-            }
-        }
-
-        private void SearchEstates(String searchTerm)
-        {
-            if (searchTerm == "") return;
-            foreach (Estate estate in estates)
-            {
-                string estateString = estate.ToSearchableString();
-                if (estateString.Contains(searchTerm.Trim().ToLower()))
-                    SelectListViewItem(estate.ID.ToString());
-            }
-        }
-
-        private void SearchEstates(String[] searchTerms)
-        {
-            if (searchTerms == null) return;
-            foreach (Estate estate in estates)
-            {
-                string estateString = estate.ToSearchableString();
-                if (ContainsWordArray(estateString, searchTerms))
-                    SelectListViewItem(estate.ID.ToString());
-            }
-        }
-
-        private bool ContainsWordArray(string estateString, string[] searchTerms)
-        {
-            bool found = true;
-            foreach (string searchTerm in searchTerms)
-            {
-                if (!estateString.Contains(searchTerm.Trim().ToLower()))
-                {
-                    found = false;
-                    break;
-                }
-            }
-            return found;
-        }
+        }                     
 
         private void SelectListViewItem(string ID)
         {
@@ -279,7 +179,7 @@ namespace Assignment1
             Image image = Image.FromFile(lblChosenImage.Text);
             string imagename = lblChosenImage.Text;
 
-            Estate estate = CreateEstate(id++, category, type, legalForm, street, zipcode, city, country, image, imagename);
+            Estate estate = controller.CreateEstate(id++, category, type, legalForm, street, zipcode, city, country, image, imagename);
             AddToList(estate);
             ClearInput();
 
@@ -323,22 +223,28 @@ namespace Assignment1
 
         private void Image_Click(object sender, EventArgs e)
         {
-            if(sender.Equals(btnImage)) lblChosenImage.Text = ChooseImage();
-            else lblChosenImageEdit.Text = ChooseImage();
+            if(sender.Equals(btnImage)) lblChosenImage.Text = controller.ChooseImage();
+            else lblChosenImageEdit.Text = controller.ChooseImage();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ClearSelectedListViewItems();
             if (tbxSearch.Text.Contains(','))
-                SearchEstates(tbxSearch.Text.Split(','));
+                foreach(string id in controller.SearchEstates(tbxSearch.Text.Split(','), estates))
+                {
+                    SelectListViewItem(id);
+                }                               
             else
-                SearchEstates(tbxSearch.Text);
+                foreach(string id in controller.SearchEstates(tbxSearch.Text, estates))
+                {
+                    SelectListViewItem(id);
+                }                    
         }
 
         private void btnConfirmEdit_Click(object sender, EventArgs e)
         {
-            Estate selectedEstate = GetEstate(currEditEstateID);
+            Estate selectedEstate = controller.GetEstate(currEditEstateID, estates);
             selectedEstate.Category = (Categories)cbCategoryEdit.SelectedIndex;
             selectedEstate.Type = cbTypeEdit.SelectedItem.ToString();
             selectedEstate.LegalForm = (LegalForms)cbLegalFormEdit.SelectedIndex;
